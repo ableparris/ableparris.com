@@ -1,0 +1,131 @@
+@import '_normalize'
+@import '_mixins'
+
+// variables
+
+$base-font: "Helvetica Neue", Helvetica, sans-serif
+
+$black: #000
+$white: #fff
+$black: #000
+$black: #000
+$white: #fff
+
+$ease: $easeInOutQuad
+
+// reset
+
+@media screen and (max-device-width: 480px)
+  html
+    -webkit-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+
+*
+  +prefix-property(box-sizing, border-box)
+
+ul
+  padding: 0
+
+li
+  list-style-type: none
+
+// base
+
+body
+  font: 400 100%/1.65 $base-font
+  text-rendering: optimizeLegibility
+
+img
+  max-width: 100%
+
+a
+  text-decoration: none
+
+  img
+    vertical-align: top
+
+// header
+
+.main-header
+  +clearfix
+  +transition(padding 0.5s $ease)
+  position: relative
+  padding: 0.625em
+
+  > .avatar
+    $size: 42px
+    display: block
+    float: left
+    width: $size
+    height: $size
+
+    background: url(/assets/more-fun-than-you.jpg) no-repeat
+    background-size: contain
+    text-indent: -9999px
+
+  > .logo
+    position: absolute
+    display: block
+    top: auto
+    left: 6em
+    right: 6em
+    bottom: auto
+    height: 42px
+    margin: 0 auto
+
+    background: url(/assets/logo-black.png) no-repeat 50% 50%
+    background-size: contain
+    text-indent: -9999px
+
+  > .info-button
+    position: relative
+    z-index: 1
+    float: right
+
+  &.knockout
+    > .logo
+      background-image: url(/assets/logo-white.png)
+
+    > .info-button
+      border-color: $white
+      color: $white
+
+      &:hover
+        background-color: $white
+        color: inherit
+
+.button
+  +transition(all 0.25s $ease)
+  padding: 0.825em 1.5em
+  border: solid 1px $black
+  font-size: 0.875em
+  line-height: 1em
+  font-weight: bold
+  letter-spacing: 1px
+  text-transform: uppercase
+  color: $black
+
+  &:hover
+    background-color: $black
+    color: inherit
+
+// hero
+
+.hero-bg
+  max-width: 600px
+  margin: 0 auto
+
+.hero-image
+  height: 0
+  padding-bottom: 56.5%
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: 50% 50%
+
++min-width(20.1em)
+  .main-header
+    padding: 1.25em
+
++min-width(40.1em)
+  .main-header
+    padding: 2.125em
