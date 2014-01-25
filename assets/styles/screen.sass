@@ -50,54 +50,36 @@ a
   +clearfix
   +transition(padding 0.5s $ease)
   position: relative
-  padding: 0.625em
+  padding: 1.5em 0 0.5em
 
-  > .avatar
-    $size: 42px
-    display: block
-    float: left
-    width: $size
-    height: $size
-
-    background: url(/assets/more-fun-than-you.jpg) no-repeat
-    background-size: contain
-    text-indent: -9999px
-
-  > .logo
-    position: absolute
+  .logo
+    +transition(height 0.5s $ease)
     display: block
     top: auto
     left: 6em
     right: 6em
     bottom: auto
-    height: 42px
-    margin: 0 auto
+    height: 2.5em
+    margin: 0 auto 1em 0
 
-    background: url(/assets/logo-black.png) no-repeat 50% 50%
+    background: url(/assets/logo-black.svg) no-repeat 50% 50%
     background-size: contain
     text-indent: -9999px
 
-  > .info-button
-    position: relative
-    z-index: 1
-    float: right
-
   &.knockout
-    > .logo
-      background-image: url(/assets/logo-white.png)
+    .logo
+      background-image: url(/assets/logo-white.svg)
 
-    > .info-button
-      border-color: $white
-      color: $white
-
-      &:hover
-        background-color: $white
-        color: inherit
+  .cover &
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
 
 .button
   +transition(all 0.25s $ease)
+  display: block
   padding: 0.825em 1.5em
-  border: solid 1px $black
   font-size: 0.875em
   line-height: 1em
   font-weight: bold
@@ -109,23 +91,117 @@ a
     background-color: $black
     color: inherit
 
+.main-nav
+  position: relative
+  z-index: 1
+  min-height: 2.4375em
+
+  .handle
+    cursor: pointer
+    display: none
+
+.nav-list
+  +clearfix
+  position: relative
+  float: left
+  left: 50%
+  margin: 0
+  white-space: nowrap
+
+.nav-list-item
+  +transition(all 0.25s $ease)
+  float: left
+  position: relative
+  right: 50%
+  border-color: $black
+
+  &.is-selected .nav-button
+    border-bottom-style: solid
+    border-bottom-width: 2px
+
+.nav-button
+  padding-left: 0.75em
+  padding-right: 0.75em
+
+  .knockout &
+    border-color: $white
+    color: $white
+
+    &:hover
+      background-color: $white
+      border-color: inherit
+      color: inherit
+
 // hero
 
 .hero-bg
   max-width: 600px
   margin: 0 auto
 
+  .cover &
+    max-width: none
+
 .hero-image
   height: 0
-  padding-bottom: 56.5%
+  padding-bottom: 100%
   background-repeat: no-repeat
   background-size: contain
   background-position: 50% 50%
 
 +min-width(20.1em)
   .main-header
-    padding: 1.25em
+    padding-top: 2em
+    padding-bottom: 1em
 
 +min-width(40.1em)
   .main-header
-    padding: 2.125em
+    padding-top: 3em
+    padding-bottom: 2em
+
+  .main-nav
+    position: absolute
+    top: 3em
+    right: 2em
+    text-align: right
+
+    .handle
+      display: inline-block
+      border-style: solid
+      border-width: 2px
+
+    &:hover
+      .handle
+        border-color: inherit
+
+      .nav-list-item
+        +prefix-property(opacity, 1)
+
+  .nav-list
+    top: -2px
+    left: -2px
+    float: none
+
+  .nav-list-item
+    +prefix-property(opacity, 0)
+    right: 0
+    float: none
+    border: none
+
+    &.is-selected
+      display: none
+
+  .nav-button
+    display: inline-block
+
++min-width(58.1em)
+  .main-nav
+    .handle
+      float: right
+
+  .nav-list
+    float: left
+    top: 2px
+    left: 2px
+
+  .nav-list-item
+    float: left

@@ -21,15 +21,47 @@
     <link type="application/rss+xml" rel="alternate" title="{{ site.title }}" href="{{ site.meta.feed_url | fallback: site.feed_url }}">
     <link href='/assets/styles/screen.css' rel='stylesheet'>
 
+    <style>
+      {% assign bg-color = meta.bg-color | fallback: '#fff' %}
+
+      html, body {
+        background-color: {{ bg-color }};
+      }
+
+      {% unless meta.hero-type == 'cover' %}.main-header,{% endunless %}
+      .hero {
+        background-color: {{ meta.hero-bg-color | fallback: bg-color }};
+      }
+
+      .main-header {
+        color: {{ meta.hero-bg-color | fallback: bg-color }};
+      }
+    </style>
+
     {% include 'includes/fonts' %}
     {% include 'includes/analytics' %}
   </head>
 
-  <body class='is-{{ type }}' style='background-color: {{ meta.bg-color }};'>
-    <header class='{% if meta.knockout-logo? %}knockout {% endif %}main-header' style='color: {{ meta.bg-color }};'>
-      <a class='avatar' href='http://twitter.com/{{ site.meta.twitter }}'>@ableparris</a>
+  <body class='{% if meta.hero-type == "cover" %}cover {% endif %}is-{{ type }}'>
+    <header class='{% if meta.knockout-logo? %}knockout {% endif %}main-header'>
       <a class='logo' href='/'>Able Parris</a>
-      <a class='info-button button' href='/info'>Info</a>
+      <nav class='main-nav'>
+        {% if home? %}
+          {% assign section = site.pages.home %}
+        {% else %}
+          {% assign section-slug = url | remove_first:'/' | split:'/' | first %}
+          {% assign section = site.pages[section-slug] %}
+        {% endif %}
+        <a class='handle nav-button button' href='{{ section.url }}'>{{ section.title }}</a>
+        <ul class='nav-list'>
+        {% for page in site.pages %}
+          {% unless page.home? %}
+          <li class='{% if section.slug == page.slug %}is-selected {% endif %}nav-list-item'>
+            <a class='nav-button button' href='{{ page.url }}'>{{ page.title }}</a>
+          </li>
+          {% endunless %}
+        {% endfor %}
+        </ul>
     </header>
 
     {{ content }}
