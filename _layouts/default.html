@@ -22,19 +22,20 @@
     <link href='/assets/styles/screen.css' rel='stylesheet'>
 
     <style>
+      {% assign hero = assets.first %}
       {% assign bg-color = meta.bg-color | fallback: '#fff' %}
 
       html, body {
         background-color: {{ bg-color }};
       }
 
-      {% unless meta.hero-type == 'cover' %}.main-header,{% endunless %}
+      {% unless hero.meta.type == 'cover' %}.main-header,{% endunless %}
       .hero {
-        background-color: {{ meta.hero-bg-color | fallback: bg-color }};
+        background-color: {{ hero.meta.bg-color | fallback: bg-color }};
       }
 
       .main-header {
-        color: {{ meta.hero-bg-color | fallback: bg-color }};
+        color: {{ hero.meta.bg-color | fallback: bg-color }};
       }
     </style>
 
@@ -64,7 +65,11 @@
         </ul>
     </header>
 
-    {{ content }}
+    {% include 'includes/hero' %}
+
+    <div class='main-content'>
+      {{ content }}
+    </div>
 
     <script src="//platform.twitter.com/widgets.js"></script>
   </body>

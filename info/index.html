@@ -1,0 +1,16 @@
+{% capture content %}
+<article class='bio article'>
+  {{ body }}
+</article>
+
+<aside class='link-sidebar'>
+  {% for page in pages %}
+  <article class='links article'>
+    <h3>{{ page.title }}</h3>
+    {{ page.body }}
+  </article>
+  {% endfor %}
+</aside>
+{% endcapture %}
+
+{% include 'layouts/default' %}

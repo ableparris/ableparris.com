@@ -1,9 +1,14 @@
-@import '_normalize'
-@import '_mixins'
+$column: 80px
+$gutter: 80px
+$grid-columns: 12
+$max-width: 72em
+
+@import "_normalize"
+@import "_mixins"
+@import "bourbon/bourbon"
+@import "neat/neat"
 
 // variables
-
-$base-font: "Helvetica Neue", Helvetica, sans-serif
 
 $black: #000
 $white: #fff
@@ -12,6 +17,21 @@ $black: #000
 $white: #fff
 
 $ease: $easeInOutQuad
+
+@mixin header-font
+  font-family: "Cobol Bold", "Helvetica Neue", Helvetica, sans-serif
+  font-size-adjust: 0.51
+  font-weight: bold
+  font-style: normal
+  text-transform: uppercase
+
+@mixin vertically-center
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: auto
 
 // reset
 
@@ -32,13 +52,18 @@ li
 // base
 
 body
-  font: 400 100%/1.65 $base-font
+  font-family: "Apercu Regular", Calibri, sans-serif
+  font-size: 100%/1.65
+  font-size-adjust: 0.508
+  font-weight:normal
+  font-style:normal
   text-rendering: optimizeLegibility
 
 img
   max-width: 100%
 
 a
+  color: $black
   text-decoration: none
 
   img
@@ -95,6 +120,7 @@ a
   position: relative
   z-index: 1
   min-height: 2.4375em
+  overflow: hidden
 
   .handle
     cursor: pointer
@@ -134,6 +160,9 @@ a
 
 // hero
 
+.hero
+  position: relative
+
 .hero-bg
   max-width: 600px
   margin: 0 auto
@@ -147,6 +176,82 @@ a
   background-repeat: no-repeat
   background-size: contain
   background-position: 50% 50%
+
+.hero-text-wrapper
+  +vertically-center
+  max-width: 50em
+  margin: auto
+
+.hero-text
+  +transition(all 0.5s $ease)
+  +vertically-center
+  display: table
+  top: -20%
+  width: 100%
+
+  +header-font
+  font-size: 2em
+  line-height: 1.1em
+  letter-spacing: 0.0555em
+  text-align: center
+
+  +min-width(30.1em)
+    font-size: 3em
+
+  +min-width(40.1em)
+    font-size: 4em
+
+  +min-width(50.1em)
+    font-size: 5.625em
+
+.main-content
+  +outer-container
+  max-width: 70em
+  margin: 2em 0.5em
+
+  .article
+    margin-top: 2em
+
+    &:first-child
+      margin-top: 0
+
+  +min-width(70.1em)
+    margin-left: auto
+    margin-right: auto
+
+.article
+  h3
+    margin: 0.5em 0
+    font-size: 0.875em
+    text-transform: uppercase
+
+    +min-width(40.1em)
+      font-size: 1em
+
+  p
+    margin-top: 0
+    font-size: 1.25em
+    line-height: 1.5em
+
+    +min-width(40.1em)
+      font-size: 1.5em
+
+  a
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
+
+.links
+  p
+    font-size: 1.25em
+    line-height: 1.5em
+
+    +min-width(30.1em)
+      font-size: 2em
+
+    +min-width(40.1em)
+      font-size: 3em
 
 +min-width(20.1em)
   .main-header
@@ -205,3 +310,9 @@ a
 
   .nav-list-item
     float: left
+
+  .bio
+    +span-columns(6)
+
+  .link-sidebar
+    +span-columns(6)

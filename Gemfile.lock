@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     coderay (1.0.9)
     coffee-script (2.2.0)
       coffee-script-source
@@ -45,6 +48,9 @@ GEM
     multi_json (1.8.0)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    neat (1.5.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -72,9 +78,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bourbon
   guard-coffeescript
   guard-livereload
   guard-sass
+  neat
   rack
   racksh
   siteleaf
