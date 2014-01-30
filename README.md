@@ -17,3 +17,9 @@
 ![](http://dstry.it/TYgM/image.png)
 --
 ![](http://dstry.it/TYVx/image.png)
+--
+![](http://dstry.it/TdfC/image.png)
+--
+![](http://dstry.it/Te5x/image.png)
+--
+![](http://dstry.it/Tdz6/image.png)
