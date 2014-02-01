@@ -1,4 +1,24 @@
 {% capture content %}
+<section class='link-section section'>
+  <h3>Recommended</h3>
+  <ul class='recommended-list link-list'>
+    {% for post in taxonomy.tags.recommended.posts %}
+      <li class='link-item'>
+        <a class='webfont link' href='{{ post.url }}'>{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+<section class='link-section section'>
+  <h3>Everything</h3>
+  <ul class='link-list'>
+    {% for post in posts %}
+      <li class='link-item'>
+        <a class='webfont link' href='{{ post.url }}'>{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
 {% endcapture %}
 
 {% include 'layouts/default' %}

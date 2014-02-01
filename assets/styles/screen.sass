@@ -69,6 +69,17 @@ a
   img
     vertical-align: top
 
+::selection
+  background-color: $black
+  color: $white
+
+.webfont
+  visibility: hidden
+
+  .wf-active &,
+  .wf-inactive &
+    visibility: visible
+
 // grid
 
 .grid-list
@@ -249,18 +260,18 @@ a
   max-width: $max-width
   margin: 2em 0.5em
 
-  .article
-    margin-top: 2em
-
-    &:first-child
-      margin-top: 0
-
   +min-width($max-width + 2.1em)
     margin-left: auto
     margin-right: auto
 
+.section,
 .article
   +transition(all 0.5s $ease)
+
+  margin-top: 2em
+
+  &:first-child
+    margin-top: 0
 
   h3
     margin: 0.5em 0
@@ -271,7 +282,6 @@ a
       font-size: 1em
 
   p
-    +transition(all 0.5s $ease)
     margin-top: 0
     font-size: 1.25em
     line-height: 1.5em
@@ -279,11 +289,11 @@ a
     +min-width(40.1em)
       font-size: 1.5em
 
-  a
-    text-decoration: underline
+    a
+      text-decoration: underline
 
-    &:hover
-      text-decoration: none
+      &:hover
+        text-decoration: none
 
 .link-sidebar
   +transition(all 0.5s $ease)
@@ -299,33 +309,99 @@ a
     +min-width(40.1em)
       font-size: 3em
 
-.main-article
-  +outer-container
+.link-section
+  margin: 0
 
-  p
-    +span-columns(12)
+  h3
+    text-transform: none
+
+  +min-width(40.1em)
+    +span-columns(10)
+    +shift(1)
+
+  +min-width(60.1em)
+    +span-columns(8)
+    +shift(2)
+
+.link-list
+  margin: 1rem 0
+
+  .link-item
+    border-bottom: solid 1px
+    margin-bottom: 0.75em
+    padding-bottom: 0.75em
+
+    &:last-child
+      border-bottom: none
+      margin-bottom: 0
+      padding-bottom: 0
+
+  +min-width(30.1em)
+    font-size: 125%
+
+  +min-width(40.1em)
+    font-size: 150%
+
+  +min-width(50.1em)
+    &.recommended-list
+      font-size: 200%
+
+.recommended-list
+  margin-top: 0
+
+.link
+  +transition(font-size 0.5s $ease)
+  position: relative
+
+  +header-font
+  font-size: 1.325em
+
+  &:after
+    +transition(opacity 0.25s $ease)
+    +prefix-property(opacity, 0)
+    position: absolute
+    top: -0.025em
+    margin-left: 0.25em
+    content: '\2192'
+
+  &:hover:after
+    +prefix-property(opacity, 1)
+
+  .recommended-list &
+    font-size: 1.75em
+
+.main-article
+  +span-columns(12)
+  margin-top: 0
+
+  h3
+    margin-top: 2em
     font-size: 1.125em
 
-    &:nth-child(2)
+  p
+    font-size: 1.125em
+
+    &:first-child
       font-size: 1.75em
       line-height: 1.25em
 
-  +min-width(40.1em)
+  blockquote
     p
-      +span-columns(10)
-      +shift(1)
+      margin-bottom: 0.5em
+
+  +min-width(40.1em)
+    +span-columns(10)
+    +shift(1)
+
+    p
       font-size: 1.3125em
 
-      &:nth-child(2)
+      &:first-child
         font-size: 2.625em
 
   +min-width(60.1em)
-    p
-      +span-columns(8)
-      +shift(2)
-
-      &:nth-child(2)
-        +shift(0)
+    +span-columns(8)
+    +shift(0)
 
 .article-date
   +transition(all 0.5s $ease)

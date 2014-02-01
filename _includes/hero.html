@@ -6,7 +6,7 @@
   </div>
   {% if hero.meta.text %}
   <div class='hero-text-wrapper'>
-    <div class='{{ hero.meta.text-size | fallback: "medium" }} hero-text' style='color: {{ hero.meta.text-color | fallback: "#000" }}; top: {{ hero.meta.text-top | fallback: "0" }};'>{{ hero.meta.text | md }}</div>
+    <div class='{{ hero.meta.text-size | fallback: "medium" }} webfont hero-text' style='color: {{ hero.meta.text-color | fallback: "#000" }}; top: {{ hero.meta.text-top | fallback: "0" }};'>{{ hero.meta.text | md }}</div>
   </div>
   {% endif %}
 </section>
