@@ -1,0 +1,8 @@
+{% capture content %}
+  <article class='main-article article'>
+    <time class='article-date' datetime='{{ date | date: "%Y-%m-%d %I:%M" }}'>{{ date | date: '%b %-d, %Y' }}</time>
+    {{ body }}
+  </article>
+{% endcapture %}
+
+{% include 'layouts/default' %}

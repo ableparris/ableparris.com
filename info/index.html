@@ -5,10 +5,10 @@
 
 <aside class='link-sidebar'>
   {% for page in pages %}
-  <article class='links article'>
+  <section class='links article'>
     <h3>{{ page.title }}</h3>
     {{ page.body }}
-  </article>
+  </section>
   {% endfor %}
 </aside>
 {% endcapture %}

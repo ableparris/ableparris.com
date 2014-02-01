@@ -43,8 +43,14 @@
     {% include 'includes/analytics' %}
   </head>
 
-  <body class='{% if meta.hero-type == "cover" %}cover {% endif %}is-{{ type }}'>
-    <header class='{% if meta.knockout-logo? %}knockout {% endif %}main-header'>
+  <body class='{% if hero.meta.type == "cover" %}cover {% endif %}is-{{ type }}'>
+    <ul id='grid' class='grid-list' style='display: none'>
+      {% for n in (1..12) %}
+      <li></li>
+      {% endfor %}
+    </ul>
+
+    <header class='{% if meta.knockout? %}knockout {% endif %}main-header'>
       <a class='logo' href='/'>Able Parris</a>
       <nav class='main-nav'>
         {% if home? %}
@@ -72,5 +78,15 @@
     </div>
 
     <script src="//platform.twitter.com/widgets.js"></script>
+
+    <script>
+      var grid = document.getElementById('grid');
+
+      document.addEventListener('keypress', function(e) {
+        if (e.keyCode == 103) {
+          grid.style.display = grid.style.display == 'none' ? 'block' : 'none';
+        }
+      });
+    </script>
   </body>
 </html>

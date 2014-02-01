@@ -4,7 +4,9 @@
     <div class='hero-image' style='background-image: url({{ hero.url }}); background-size: {{ hero.meta.type | fallback: "contain" }}; padding-bottom: {{ hero.meta.ratio | fallback: "100%" }};'>
     </div>
   </div>
+  {% if hero.meta.text %}
   <div class='hero-text-wrapper'>
-    <h2 class='hero-text' style='color: {{ hero.meta.text-color | fallback: "#000" }}'>{{ hero.meta.text }}</h2>
+    <div class='{{ hero.meta.text-size | fallback: "medium" }} hero-text' style='color: {{ hero.meta.text-color | fallback: "#000" }}; top: {{ hero.meta.text-top | fallback: "0" }};'>{{ hero.meta.text | md }}</div>
   </div>
+  {% endif %}
 </section>

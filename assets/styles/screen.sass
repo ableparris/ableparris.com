@@ -69,6 +69,28 @@ a
   img
     vertical-align: top
 
+// grid
+
+.grid-list
+  pointer-events: none
+  z-index: 2
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  max-width: $max-width
+  height: 100%
+  margin: 0
+
+  +min-width($max-width)
+    left: 50%
+    margin-left: -$max-width/2
+
+  li
+    +span-columns(1)
+    background-color: rgba(255, 0, 0, 0.1)
+    height: 100%
+
 // header
 
 .main-header
@@ -76,6 +98,7 @@ a
   +transition(padding 0.5s $ease)
   position: relative
   padding: 1.5em 0 0.5em
+  z-index: 1
 
   .logo
     +transition(height 0.5s $ease)
@@ -155,8 +178,8 @@ a
 
     &:hover
       background-color: $white
-      border-color: inherit
-      color: inherit
+      border-color: rgba(255, 255, 255, 0)
+      color: $black
 
 // hero
 
@@ -172,21 +195,28 @@ a
 
 .hero-image
   height: 0
+  min-height: 20em
   padding-bottom: 100%
   background-repeat: no-repeat
   background-size: contain
   background-position: 50% 50%
 
 .hero-text-wrapper
+  +transition(top 0.5s $ease)
   +vertically-center
   max-width: 50em
   margin: auto
+
+  .cover &
+    top: 7rem
+
+    +min-width(40.1em)
+      top: 5rem
 
 .hero-text
   +transition(all 0.5s $ease)
   +vertically-center
   display: table
-  top: -20%
   width: 100%
 
   +header-font
@@ -194,6 +224,13 @@ a
   line-height: 1.1em
   letter-spacing: 0.0555em
   text-align: center
+
+  blockquote
+    font-size: 0.375em
+    line-height: 1.25em
+
+    p:last-child
+      font-size: 0.625em
 
   +min-width(30.1em)
     font-size: 3em
@@ -204,9 +241,12 @@ a
   +min-width(50.1em)
     font-size: 5.625em
 
+    &.big
+      font-size: 6.75em
+
 .main-content
   +outer-container
-  max-width: 70em
+  max-width: $max-width
   margin: 2em 0.5em
 
   .article
@@ -215,11 +255,13 @@ a
     &:first-child
       margin-top: 0
 
-  +min-width(70.1em)
+  +min-width($max-width + 2.1em)
     margin-left: auto
     margin-right: auto
 
 .article
+  +transition(all 0.5s $ease)
+
   h3
     margin: 0.5em 0
     font-size: 0.875em
@@ -229,6 +271,7 @@ a
       font-size: 1em
 
   p
+    +transition(all 0.5s $ease)
     margin-top: 0
     font-size: 1.25em
     line-height: 1.5em
@@ -242,6 +285,9 @@ a
     &:hover
       text-decoration: none
 
+.link-sidebar
+  +transition(all 0.5s $ease)
+
 .links
   p
     font-size: 1.25em
@@ -252,6 +298,53 @@ a
 
     +min-width(40.1em)
       font-size: 3em
+
+.main-article
+  +outer-container
+
+  p
+    +span-columns(12)
+    font-size: 1.125em
+
+    &:nth-child(2)
+      font-size: 1.75em
+      line-height: 1.25em
+
+  +min-width(40.1em)
+    p
+      +span-columns(10)
+      +shift(1)
+      font-size: 1.3125em
+
+      &:nth-child(2)
+        font-size: 2.625em
+
+  +min-width(60.1em)
+    p
+      +span-columns(8)
+      +shift(2)
+
+      &:nth-child(2)
+        +shift(0)
+
+.article-date
+  +transition(all 0.5s $ease)
+  +span-columns(12)
+  display: block
+  position: relative
+  top: 0
+  margin-bottom: 1em
+  font-size: 1.125em
+
+  +min-width(40.1em)
+    +span-columns(10)
+    +shift(1)
+    font-size: 1.3125em
+
+  +min-width(60.1em)
+    +span-columns(2)
+    +shift(0)
+    top: 0.9375em
 
 +min-width(20.1em)
   .main-header
@@ -278,6 +371,12 @@ a
       .handle
         border-color: inherit
 
+        .cover &
+          border-color: rgba(0, 0, 0, 0)
+
+        .knockout.cover &
+          border-color: rgba(255, 255, 255, 0)
+
       .nav-list-item
         +prefix-property(opacity, 1)
 
@@ -298,6 +397,11 @@ a
   .nav-button
     display: inline-block
 
+  .bio,
+  .link-sidebar
+    +shift(1)
+    +span-columns(10)
+
 +min-width(58.1em)
   .main-nav
     .handle
@@ -311,8 +415,7 @@ a
   .nav-list-item
     float: left
 
-  .bio
-    +span-columns(6)
-
+  .bio,
   .link-sidebar
     +span-columns(6)
+    +shift(0)
