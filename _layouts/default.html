@@ -54,7 +54,7 @@
       <a class='logo' href='/'>Able Parris</a>
       <nav class='main-nav'>
         {% if home? %}
-          {% assign section = site.pages.home %}
+          {% assign section = site.pages.work %}
         {% else %}
           {% assign section-slug = url | remove_first:'/' | split:'/' | first %}
           {% assign section = site.pages[section-slug] %}
@@ -62,11 +62,9 @@
         <a class='handle nav-button button' href='{{ section.url }}'>{{ section.title }}</a>
         <ul class='nav-list'>
         {% for page in site.pages %}
-          {% unless page.home? %}
           <li class='{% if section.slug == page.slug %}is-selected {% endif %}nav-list-item'>
             <a class='nav-button button' href='{{ page.url }}'>{{ page.title }}</a>
           </li>
-          {% endunless %}
         {% endfor %}
         </ul>
     </header>
