@@ -12,9 +12,7 @@ $max-width: 72em
 
 $black: #000
 $white: #fff
-$black: #000
-$black: #000
-$white: #fff
+$lightest-grey: #e5e5e5
 
 $ease: $easeInOutQuad
 
@@ -52,6 +50,8 @@ li
 // base
 
 body
+  overflow-x: hidden
+
   font-family: "Apercu Regular", Calibri, sans-serif
   font-size: 100%/1.65
   font-size-adjust: 0.508
@@ -257,12 +257,18 @@ a
 
 .main-content
   +outer-container
+  overflow-x: hidden
   max-width: $max-width
-  margin: 2em 0.5em
+  margin-top: 2em
+  margin-bottom: 2em
 
-  +min-width($max-width + 2.1em)
-    margin-left: auto
-    margin-right: auto
+  .info &
+    margin-left: 0.5em
+    margin-right: 0.5em
+
+    +min-width($max-width + 2.1em)
+      margin-left: auto
+      margin-right: auto
 
 .section,
 .article
@@ -373,6 +379,8 @@ a
 .main-article
   +span-columns(12)
   margin-top: 0
+  padding-left: 0.5em
+  padding-right: 0.5em
 
   h3
     margin-top: 2em
@@ -384,6 +392,10 @@ a
     &:first-child
       font-size: 1.75em
       line-height: 1.25em
+
+  strong > img
+    margin-left: -20%
+    max-width: 140%
 
   blockquote
     p
@@ -401,7 +413,10 @@ a
 
   +min-width(60.1em)
     +span-columns(8)
-    +shift(0)
+    +shift(2)
+
+    .words &
+      +shift(0)
 
 .article-date
   +transition(all 0.5s $ease)
@@ -421,6 +436,97 @@ a
     +span-columns(2)
     +shift(0)
     top: 0.9375em
+
+// work
+
+.content-title
+  margin: 0.5em 0
+
+  +header-font
+  font-size: 2em
+  letter-spacing: 2px
+  text-align: center
+  color: $lightest-grey
+
+  +min-width(40.1em)
+    font-size: 2.75em
+
+  +min-width(50.1em)
+    font-size: 3.5em
+
+  +min-width(60.1em)
+    font-size: 4.375em
+
+.content-subtitle
+  margin: 0.5em 0
+
+  +header-font
+  font-size: 1.125em
+  letter-spacing: 2px
+  text-align: center
+  color: $lightest-grey
+
+  +min-width(50.1em)
+    font-size: 1.5em
+
+  +min-width(60.1em)
+    font-size: 1.875em
+
+.thumb-list
+  +outer-container
+  margin: 0
+
+  +min-width(40.1em)
+    margin-top: 2em
+
+.thumb-item
+  margin: 2.5em 0
+
+  +min-width(40.1em)
+    +span-columns(6)
+    margin-top: 1em
+    margin-bottom: 1em
+
+    &:not(.full) + .thumb-item:not(.full)
+      +omega
+
+    &.full
+      +span-columns(12)
+
+.work-header
+  +min-width(30.1em)
+    +outer-container
+
+    .name-title
+      position: relative
+      top: 2.25em
+
+    .first-name-title
+      +span-columns(2)
+      text-align: left
+
+    .last-name-title
+      +span-columns(2)
+      +shift(8)
+      text-align: right
+
+    .content-title
+      +span-columns(8)
+      +shift(2)
+      margin-top: -0.275em
+      margin-bottom: 0.275em
+
+    .timeframe-title
+      +span-columns(12)
+      margin-top: 0
+      margin-bottom: 0
+
+  +min-width(70.1em)
+    .first-name-title
+      +shift(1)
+
+    .last-name-title
+      +shift(6)
 
 +min-width(20.1em)
   .main-header

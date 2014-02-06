@@ -1,0 +1,21 @@
+{% capture content %}
+  <header class='work-header content-header'>
+    <h3 class='webfont name-title content-subtitle'>
+      <span class='first-name-title'>Able</span> <span class='last-name-title'>Parris</span>
+    </h3>
+    <h4 class='webfont content-title'>{{ meta.job-title | md | strip_html }}</h4>
+    <h5 class='webfont timeframe-title content-subtitle'>{{ meta.timeframe }}</h5>
+  </header>
+
+  <ul class='thumb-list'>
+    {% for page in pages %}
+    <li class='{{ page.meta.type }} thumb-item'>
+      <a class='thumb-link' href='{{ page.url }}'>
+        <img class='thumb' src='{{ page.meta.thumb }}'>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+{% endcapture %}
+
+{% include 'layouts/default' %}

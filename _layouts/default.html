@@ -43,7 +43,8 @@
     {% include 'includes/analytics' %}
   </head>
 
-  <body class='{% if hero.meta.type == "cover" %}cover {% endif %}is-{{ type }}'>
+  {% assign section = url | remove_first: '/' | split: '/' | first %}
+  <body class='{{ section }} {% if hero.meta.type == "cover" %}cover {% endif %}is-{{ type }}'>
     <ul id='grid' class='grid-list' style='display: none'>
       {% for n in (1..12) %}
       <li></li>
