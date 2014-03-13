@@ -312,7 +312,6 @@ a
   overflow-x: hidden
   max-width: $max-width
   margin-top: 2em
-  margin-bottom: 2em
   padding: 0 $gutter/2
 
   .info &
@@ -589,6 +588,18 @@ a
 
     .last-name-title
       +shift(6)
+
+.main-footer
+  padding: 2em
+  background-color: $black
+  color: $white
+  text-align: center
+
+  +media($tablet-portrait)
+    font-size: 112.5%
+
+  +media($tablet-landscape)
+    font-size: 125%
 
 +media($tablet-landscape)
   .main-nav
