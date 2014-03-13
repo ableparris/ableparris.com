@@ -67,9 +67,11 @@
 
     {% include 'includes/hero' %}
 
+    {% if content %}
     <main class='main-content'>
       {{ content }}
     </main>
+    {% endif %}
 
     <footer class='main-footer'>
       &copy;&infin; Able Parris
