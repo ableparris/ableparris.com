@@ -1,11 +1,7 @@
-$column: 80px
-$gutter: 80px
-$grid-columns: 12
-$max-width: 72em
-
 @import "_normalize"
 @import "_mixins"
 @import "bourbon/bourbon"
+@import "_grid-settings"
 @import "neat/neat"
 
 // variables
@@ -38,7 +34,9 @@ $ease: $easeInOutQuad
     -webkit-text-size-adjust: 100%
     -ms-text-size-adjust: 100%
 
-*
+*,
+*:after,
+*:before
   +prefix-property(box-sizing, border-box)
 
 ul
@@ -87,20 +85,66 @@ a
   z-index: 2
   position: fixed
   top: 0
-  left: 0
-  width: 100%
+  left: $gutter/2
+  right: $gutter/2
   max-width: $max-width
   height: 100%
   margin: 0
 
   +min-width($max-width)
+    width: 100%
     left: 50%
+    right: auto
     margin-left: -$max-width/2
 
   li
     +span-columns(1)
     background-color: rgba(255, 0, 0, 0.1)
     height: 100%
+
+    &:nth-child(4)
+      +omega
+
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7),
+    &:nth-child(8),
+    &:nth-child(9),
+    &:nth-child(10),
+    &:nth-child(11),
+    &:nth-child(12)
+      display: none
+
+    +media($tablet-portrait)
+      +span-columns(1)
+
+      &:nth-child(4)
+        +span-columns(1)
+
+      &:nth-child(8)
+        +omega
+
+      &:nth-child(5),
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(8)
+        display: block
+
+    +media($tablet-landscape)
+      +span-columns(1)
+
+      &:nth-child(4),
+      &:nth-child(8)
+        +span-columns(1)
+
+      &:nth-child(9),
+      &:nth-child(10),
+      &:nth-child(11),
+      &:nth-child(12)
+        display: block
+
+    +media($desktop)
+      +span-columns(1)
 
 // header
 
@@ -110,6 +154,14 @@ a
   position: relative
   padding: 1.5em 0 0.5em
   z-index: 1
+
+  +media($phone-landscape)
+    padding-top: 2em
+    padding-bottom: 1em
+
+  +media($tablet-portrait)
+    padding-top: 3em
+    padding-bottom: 2em
 
   .logo
     +transition(height 0.5s $ease)
@@ -221,7 +273,7 @@ a
   .cover &
     top: 7rem
 
-    +min-width(40.1em)
+    +media($tablet-landscape)
       top: 5rem
 
 .hero-text
@@ -243,13 +295,13 @@ a
     p:last-child
       font-size: 0.625em
 
-  +min-width(30.1em)
+  +media($tablet-portrait)
     font-size: 3em
 
-  +min-width(40.1em)
+  +media($tablet-landscape)
     font-size: 4em
 
-  +min-width(50.1em)
+  +media($desktop)
     font-size: 5.625em
 
     &.big
@@ -261,12 +313,10 @@ a
   max-width: $max-width
   margin-top: 2em
   margin-bottom: 2em
+  padding: 0 $gutter/2
 
   .info &
-    margin-left: 0.5em
-    margin-right: 0.5em
-
-    +min-width($max-width + 2.1em)
+    +media($desktop)
       margin-left: auto
       margin-right: auto
 
@@ -284,7 +334,7 @@ a
     font-size: 0.875em
     text-transform: uppercase
 
-    +min-width(40.1em)
+    +media($tablet-landscape)
       font-size: 1em
 
   p
@@ -292,7 +342,7 @@ a
     font-size: 1.25em
     line-height: 1.5em
 
-    +min-width(40.1em)
+    +media($tablet-landscape)
       font-size: 1.5em
 
     a
@@ -309,23 +359,24 @@ a
     font-size: 1.25em
     line-height: 1.5em
 
-    +min-width(30.1em)
+    +media($tablet-portrait)
       font-size: 2em
 
-    +min-width(40.1em)
+    +media($tablet-landscape)
       font-size: 3em
 
 .link-section
   margin: 0
+  padding: 0 $gutter/2
 
   h3
     text-transform: none
 
-  +min-width(40.1em)
+  +media($tablet-landscape)
     +span-columns(10)
     +shift(1)
 
-  +min-width(60.1em)
+  +media($desktop)
     +span-columns(8)
     +shift(2)
 
@@ -342,13 +393,13 @@ a
       margin-bottom: 0
       padding-bottom: 0
 
-  +min-width(30.1em)
+  +media($tablet-portrait)
     font-size: 125%
 
-  +min-width(40.1em)
+  +media($tablet-landscape)
     font-size: 150%
 
-  +min-width(50.1em)
+  +media($desktop)
     &.recommended-list
       font-size: 200%
 
@@ -377,10 +428,7 @@ a
     font-size: 1.75em
 
 .main-article
-  +span-columns(12)
   margin-top: 0
-  padding-left: 0.5em
-  padding-right: 0.5em
 
   h3
     margin-top: 2em
@@ -401,7 +449,7 @@ a
     p
       margin-bottom: 0.5em
 
-  +min-width(40.1em)
+  +media($tablet-landscape)
     +span-columns(10)
     +shift(1)
 
@@ -411,7 +459,7 @@ a
       &:first-child
         font-size: 2.625em
 
-  +min-width(60.1em)
+  +media($desktop)
     +span-columns(8)
     +shift(2)
 
@@ -420,19 +468,18 @@ a
 
 .article-date
   +transition(all 0.5s $ease)
-  +span-columns(12)
   display: block
   position: relative
   top: 0
   margin-bottom: 1em
   font-size: 1.125em
 
-  +min-width(40.1em)
+  +media($tablet-landscape)
     +span-columns(10)
     +shift(1)
     font-size: 1.3125em
 
-  +min-width(60.1em)
+  +media($desktop)
     +span-columns(2)
     +shift(0)
     top: 0.9375em
@@ -448,13 +495,13 @@ a
   text-align: center
   color: $lightest-grey
 
-  +min-width(40.1em)
+  +media($tablet-portrait)
     font-size: 2.75em
 
-  +min-width(50.1em)
+  +media($tablet-landscape)
     font-size: 3.5em
 
-  +min-width(60.1em)
+  +media($desktop)
     font-size: 4.375em
 
 .content-subtitle
@@ -466,36 +513,43 @@ a
   text-align: center
   color: $lightest-grey
 
-  +min-width(50.1em)
+  +media($tablet-landscape)
     font-size: 1.5em
 
-  +min-width(60.1em)
+  +media($desktop)
     font-size: 1.875em
 
 .thumb-list
   +outer-container
   margin: 0
 
-  +min-width(40.1em)
+  +media($tablet-portrait)
     margin-top: 2em
 
 .thumb-item
   margin: 2.5em 0
 
-  +min-width(40.1em)
-    +span-columns(6)
+  +media($tablet-portrait)
+    +span-columns(4)
     margin-top: 1em
     margin-bottom: 1em
 
-    &:not(.full) + .thumb-item:not(.full)
+    &.right
       +omega
+
+    &.full
+      +span-columns(8)
+
+  +media($tablet-landscape)
+    +span-columns(6)
 
     &.full
       +span-columns(12)
 
 .work-header
-  +min-width(30.1em)
+  +media($tablet-portrait)
     +outer-container
+    padding: 0 $gutter/2
 
     .name-title
       position: relative
@@ -507,37 +561,36 @@ a
 
     .last-name-title
       +span-columns(2)
-      +shift(8)
+      +shift(4)
       text-align: right
 
     .content-title
-      +span-columns(8)
-      +shift(2)
+      +span-columns(6)
+      +shift(1)
       margin-top: -0.275em
       margin-bottom: 0.275em
 
     .timeframe-title
-      +span-columns(12)
+      +span-columns(8)
       margin-top: 0
       margin-bottom: 0
 
-  +min-width(70.1em)
+  +media($tablet-landscape)
+    .first-name-title
+      +span-columns(2)
+
+    .last-name-title
+      +span-columns(2)
+      +shift(8)
+
+  +media($desktop)
     .first-name-title
       +shift(1)
 
     .last-name-title
       +shift(6)
 
-+min-width(20.1em)
-  .main-header
-    padding-top: 2em
-    padding-bottom: 1em
-
-+min-width(40.1em)
-  .main-header
-    padding-top: 3em
-    padding-bottom: 2em
-
++media($tablet-landscape)
   .main-nav
     position: absolute
     top: 3em
@@ -584,7 +637,7 @@ a
     +shift(1)
     +span-columns(10)
 
-+min-width(58.1em)
++media($desktop)
   .main-nav
     .handle
       float: right

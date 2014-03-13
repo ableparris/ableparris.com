@@ -1,0 +1,9 @@
+<ul class='thumb-list'>
+  {% for page in pages %}
+  <li class='{% unless page.meta.type == "full" %}{% cycle "left", "right" %}{% endunless %}{{ page.meta.type }} thumb-item'>
+    <a class='thumb-link' href='{{ page.url }}'>
+      <img class='thumb' src='{{ page.meta.thumb }}'>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

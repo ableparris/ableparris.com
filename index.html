@@ -7,15 +7,7 @@
     <h5 class='webfont timeframe-title content-subtitle'>{{ meta.timeframe }}</h5>
   </header>
 
-  <ul class='thumb-list'>
-    {% for page in pages %}
-    <li class='{{ page.meta.type }} thumb-item'>
-      <a class='thumb-link' href='{{ page.url }}'>
-        <img class='thumb' src='{{ page.meta.thumb }}'>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+  {% include 'includes/thumbs' %}
 {% endcapture %}
 
 {% include 'layouts/default' %}
