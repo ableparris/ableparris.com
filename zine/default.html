@@ -1,0 +1,9 @@
+{% if body %}
+  {% capture content %}
+    <article class='main-article article'>
+      {{ body }}
+    </article>
+  {% endcapture %}
+{% endif %}
+
+{% include 'layouts/default' %}

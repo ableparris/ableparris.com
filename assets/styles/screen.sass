@@ -289,14 +289,17 @@ a
   text-align: center
 
   blockquote
-    font-size: 0.375em
+    font-size: 0.5em
     line-height: 1.25em
 
-    p:last-child
+    p:last-child:not(:first-child)
       font-size: 0.625em
 
   +media($tablet-portrait)
     font-size: 3em
+
+    blockquote
+      font-size: 0.375em
 
   +media($tablet-landscape)
     font-size: 4em
@@ -345,11 +348,21 @@ a
     +media($tablet-landscape)
       font-size: 1.5em
 
-    a
-      text-decoration: underline
+  a
+    text-decoration: underline
 
-      &:hover
-        text-decoration: none
+    &:hover
+      text-decoration: none
+
+  ol, ul
+    font-size: 1.25em
+    line-height: 1.5em
+
+  ol > li
+    list-style-type: decimal
+
+  ul > li
+    list-style-type: disc
 
 .link-sidebar
   +transition(all 0.5s $ease)
